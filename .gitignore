@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+.env
+
+# Environment
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Cache
+cache/*.json
+
+# Config (contains user preferences)
+config.json
+
+# OS
+.DS_Store
+Thumbs.db
+
