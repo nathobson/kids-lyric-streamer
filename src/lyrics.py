@@ -169,7 +169,7 @@ def fetch_lyrics(artist: str, title: str, album: str = "") -> Optional[LyricsDat
     Args:
         artist: Artist name.
         title: Song title.
-        album: Album name (optional, improves matching).
+        album: Album name (optional, used for caching only - not for search).
     
     Returns:
         LyricsData if found, None otherwise.
@@ -179,14 +179,13 @@ def fetch_lyrics(artist: str, title: str, album: str = "") -> Optional[LyricsDat
     if cached:
         return cached
     
-    # Build search URL
+    # Build search URL - don't include album as it causes mismatches
+    # (ACRCloud album names often differ from LRCLIB's database)
     base_url = "https://lrclib.net/api/search"
     params = {
         'artist_name': artist,
         'track_name': title
     }
-    if album:
-        params['album_name'] = album
     
     try:
         response = requests.get(base_url, params=params, timeout=10)
